@@ -1,6 +1,6 @@
 {
     "name": "Youtube Clone",
-    "short_name": "Youtube",
+    "short_name": "Clone",
     "start_url": ".",
     "display": "standalone",
     "theme_color": "#ffffff",

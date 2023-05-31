@@ -8,17 +8,16 @@ const API_KEY = 'AIzaSyA0NxPeGiiw3nYZFYT9U_jv2wcQqgjyeQ0';
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideoId, setSelectedVideoId] = useState('');
-  const [nextPageToken, setNextPageToken] = useState('');
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
 
   const loadNextVideo = () => {
-    const nextVideoId = videos[currentVideoIndex + 1].id.videoId;
+    const nextVideoId = videos[currentVideoIndex + 1].id.videoId; // % videos[currentVideoIndex].id.videoId.length;
     setCurrentVideoIndex(currentVideoIndex + 1)
     setSelectedVideoId(nextVideoId)
     console.log(videos)
-  } 
+  }
 
-  const handleSearch = async (search, pageToken = '') => {
+  const handleSearch = async (search) => {
     try {
       const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
         params: {
@@ -27,13 +26,10 @@ const VideoList = () => {
           key: API_KEY
           ,
           q: search,
-          pageToken: pageToken
         },
       });
 
       setVideos((prevVideos) => [...prevVideos, ...response.data.items]);
-      setNextPageToken(response.data.nextPageToken);
-      console.log(response.data.items)
       setVideos(response.data.items);
       if (response.data.items.length > 0) {
         setSelectedVideoId(response.data.items[0].id.videoId);
@@ -47,23 +43,17 @@ const VideoList = () => {
     setSelectedVideoId(videoId);
   };
 
-  const loadMoreVideos = () => {
-    handleSearch(selectedVideoId, nextPageToken);
-  };
-
   return (
     <div>
-      <SearchBar handleSearch={handleSearch} />
       <VideoPlayer videoId={selectedVideoId} loadNextVideo={loadNextVideo} />
+      <SearchBar handleSearch={handleSearch} />
       <div>
         {videos.map((video) => (
-          <div key={video.id.videoId} onClick={() => handleVideoSelect(video.id.videoId)}>
+          <div className={`box box-${video.id.videoId}`} key={video.id.videoId} onClick={() => handleVideoSelect(video.id.videoId)}>
             <h2>{video.snippet.title}</h2>
-            <p>{video.snippet.description}</p>
             <img src={video.snippet.thumbnails.default.url} alt={video.snippet.title} />
           </div>
         ))}
-         {nextPageToken && <button onClick={loadMoreVideos}>Load More</button>}
 </div>
 </div>)}
 

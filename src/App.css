@@ -4,21 +4,24 @@
 
 .sticky-container {
   position: sticky;
-  top: 20px;
+  top: 0px;
   z-index: 1;
   background-color: #f5f5f5;
-  padding: 20px;
+  align-items: center;
 }
 
 .sticky-video {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: 28%;
 }
 
 .search-bar {
-  display: flex;
-  align-items: center;
-  max-width: 400px;
-  margin: 0 auto;
+  position: sticky;
+  top: 360px;
+  background-color: #fff;
+  padding: 10px;
+  z-index: 1;
 }
 
 .search-bar input {
@@ -42,4 +45,19 @@
 
 .search-bar button:hover {
   background-color: #0056b3;
+}
+
+.box {
+  flex: 1;
+  border-right: 40px solid gray;
+  border: 50px #0056b3;
+}
+
+.box:last-child {
+  border-right: none;
+} 
+
+.box:hover {
+  background-color: lightblue;
+  color: white; 
 }

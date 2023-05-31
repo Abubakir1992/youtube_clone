@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import ReactPlayer from 'react-player'
 
 const VideoPlayer = ({ videoId, loadNextVideo }) => {
-  const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0`; 
+  const videoUrl = `https://www.youtube.com/embed/${videoId}`; 
 
   const playerRef = useRef()
 
@@ -18,7 +18,6 @@ const VideoPlayer = ({ videoId, loadNextVideo }) => {
         <ReactPlayer
           ref={playerRef}
           className="sticky-video"
-          width="560"
           url={videoUrl}
           title="YouTube Video Player"
           frameBorder="0"

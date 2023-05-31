@@ -1,16 +1,23 @@
 import React, { useRef } from "react";
 import ReactPlayer from 'react-player'
 
-const VideoPlayer = ({ videoId }) => {
-  const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0`;
+const VideoPlayer = ({ videoId, loadNextVideo }) => {
+  const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0`; 
 
-  const playerRef = useRef(null);
+  const playerRef = useRef()
+
+  const videoReady = () => {
+
+    if (playerRef.current) {
+      playerRef.current.getInternalPlayer().playVideo(); // Autoplay the video
+    }
+  }
 
   return (
     <div className="sticky-container">
         <ReactPlayer
-          className="sticky-video"
           ref={playerRef}
+          className="sticky-video"
           width="560"
           url={videoUrl}
           title="YouTube Video Player"
@@ -18,7 +25,8 @@ const VideoPlayer = ({ videoId }) => {
           allowFullScreen
           allow="autoplay; encrypted-media; accelerometer"
           controls
-          loop
+          onEnded={loadNextVideo}
+          onReady={videoReady}
         ></ReactPlayer>
     </div>
   );

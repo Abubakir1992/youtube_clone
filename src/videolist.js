@@ -9,6 +9,14 @@ const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideoId, setSelectedVideoId] = useState('');
   const [nextPageToken, setNextPageToken] = useState('');
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
+
+  const loadNextVideo = () => {
+    const nextVideoId = videos[currentVideoIndex + 1].id.videoId;
+    setCurrentVideoIndex(currentVideoIndex + 1)
+    setSelectedVideoId(nextVideoId)
+    console.log(videos)
+  } 
 
   const handleSearch = async (search, pageToken = '') => {
     try {
@@ -25,7 +33,7 @@ const VideoList = () => {
 
       setVideos((prevVideos) => [...prevVideos, ...response.data.items]);
       setNextPageToken(response.data.nextPageToken);
-
+      console.log(response.data.items)
       setVideos(response.data.items);
       if (response.data.items.length > 0) {
         setSelectedVideoId(response.data.items[0].id.videoId);
@@ -46,7 +54,7 @@ const VideoList = () => {
   return (
     <div>
       <SearchBar handleSearch={handleSearch} />
-      <VideoPlayer videoId={selectedVideoId} />
+      <VideoPlayer videoId={selectedVideoId} loadNextVideo={loadNextVideo} />
       <div>
         {videos.map((video) => (
           <div key={video.id.videoId} onClick={() => handleVideoSelect(video.id.videoId)}>

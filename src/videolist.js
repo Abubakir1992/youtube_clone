@@ -7,7 +7,7 @@ const API_KEY = "AIzaSyA0NxPeGiiw3nYZFYT9U_jv2wcQqgjyeQ0";
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
-  const [selectedVideoId, setSelectedVideoId] = useState("");
+  const [selectedVideoId, setSelectedVideoId] = useState(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
   const loadNextVideo = () => {
@@ -18,12 +18,11 @@ const VideoList = () => {
 
   const findIndex = (tag) => {
     const videoList = Array.from(videos);
-    
-    const indexValue = videoList.findIndex(item => item.etag === tag);
-    
-    setCurrentVideoIndex(indexValue)
+
+    const indexValue = videoList.findIndex((item) => item.etag === tag);
+
+    setCurrentVideoIndex(indexValue);
   };
-    
 
   const handleSearch = async (search) => {
     try {
@@ -51,7 +50,7 @@ const VideoList = () => {
 
   const handleVideoSelect = (videoId, etag) => {
     setSelectedVideoId(videoId);
-    findIndex(etag)
+    findIndex(etag);
   };
 
   return (

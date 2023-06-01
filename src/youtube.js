@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player'
 
 const VideoPlayer = ({ videoId, loadNextVideo }) => {
   const videoUrl = `https://www.youtube.com/embed/${videoId}`; 
-
+  console.log(videoId)
   const playerRef = useRef()
 
   const videoReady = () => {
@@ -15,6 +15,7 @@ const VideoPlayer = ({ videoId, loadNextVideo }) => {
 
   return (
     <div className="sticky-container">
+      {videoId !== null ? (
         <ReactPlayer
           ref={playerRef}
           className="sticky-video"
@@ -27,6 +28,9 @@ const VideoPlayer = ({ videoId, loadNextVideo }) => {
           onEnded={loadNextVideo}
           onReady={videoReady}
         ></ReactPlayer>
+        ) : (
+        <h3>Enjoy Your Youtube Search!!!</h3>
+      )}
     </div>
   );
 };

@@ -6,17 +6,23 @@ const SearchBar = ({ handleSearch }) => {
 
   const handleChange = (event) => {
     setSearch(ref.current.value);
-
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     handleSearch(search);
+    setSearch("")
   };
 
   return (
     <form className="search-bar" onSubmit={handleSubmit}>
-      <input placeholder="Search..." type="text" value={search} onChange={handleChange} ref={ref} />
+      <input
+        placeholder="Search..."
+        type="text"
+        value={search}
+        onChange={handleChange}
+        ref={ref}
+      />
       <button type="submit">Search</button>
     </form>
   );

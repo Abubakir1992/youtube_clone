@@ -11,18 +11,16 @@ const VideoList = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
   const loadNextVideo = () => {
-    const nextVideoId = videos[currentVideoIndex + 1].id.videoId; // % videos[currentVideoIndex].id.videoId.length;
+    const nextVideoId = videos[currentVideoIndex + 1].id.videoId;
     setCurrentVideoIndex(currentVideoIndex + 1);
     setSelectedVideoId(nextVideoId);
-    console.log(videos);
-
   };
 
   const findIndex = (tag) => {
     const videoList = Array.from(videos);
-    console.log(videoList, tag)
+    
     const indexValue = videoList.findIndex(item => item.etag === tag);
-    console.log(indexValue)
+    
     setCurrentVideoIndex(indexValue)
   };
     

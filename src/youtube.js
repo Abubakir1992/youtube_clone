@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import ReactPlayer from 'react-player'
+import WelocomePage from "./welcomePage";
 
 const VideoPlayer = ({ videoId, loadNextVideo }) => {
   const videoUrl = `https://www.youtube.com/embed/${videoId}`; 
@@ -29,7 +30,7 @@ const VideoPlayer = ({ videoId, loadNextVideo }) => {
           onReady={videoReady}
         ></ReactPlayer>
         ) : (
-        <h3>Enjoy Your Youtube Search!!!</h3>
+        <WelocomePage />
       )}
     </div>
   );

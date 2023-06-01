@@ -16,6 +16,12 @@ const VideoList = () => {
     setSelectedVideoId(nextVideoId);
   };
 
+  const loadPrevVideo = () => {
+    const nextVideoId = videos[currentVideoIndex - 1].id.videoId;
+    setCurrentVideoIndex(currentVideoIndex - 1);
+    setSelectedVideoId(nextVideoId);
+  };
+
   const findIndex = (tag) => {
     const videoList = Array.from(videos);
 
@@ -57,6 +63,10 @@ const VideoList = () => {
     <div>
       <VideoPlayer videoId={selectedVideoId} loadNextVideo={loadNextVideo} />
       <SearchBar handleSearch={handleSearch} />
+          <button className="nextbutton" onClick={loadNextVideo}>next
+        </button>
+        <button className="prevbutton" onClick={loadPrevVideo}>prev
+        </button>
       <div>
         {videos.map((video) => (
           <div
@@ -74,6 +84,7 @@ const VideoList = () => {
           </div>
         ))}
       </div>
+          
     </div>
   );
 };

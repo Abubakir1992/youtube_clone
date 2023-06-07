@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import VideoPlayer from "./youtube.js";
 import SearchBar from "./Search.js";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
 
 const API_KEY = "AIzaSyA0NxPeGiiw3nYZFYT9U_jv2wcQqgjyeQ0";
 
@@ -63,10 +66,16 @@ const VideoList = () => {
     <div>
       <VideoPlayer videoId={selectedVideoId} loadNextVideo={loadNextVideo} />
       <SearchBar handleSearch={handleSearch} />
-          <button className="nextbutton" onClick={loadNextVideo}>next
+      {selectedVideoId !== null && (
+        <button className="nextbutton" onClick={loadNextVideo}>
+          Next <FontAwesomeIcon icon={faAngleDoubleRight} />
         </button>
-        <button className="prevbutton" onClick={loadPrevVideo}>prev
+      )}
+      {selectedVideoId !== null && (
+        <button className="prevbutton" onClick={loadPrevVideo}>
+          <FontAwesomeIcon icon={faAngleDoubleLeft} /> Previous
         </button>
+      )}
       <div>
         {videos.map((video) => (
           <div
@@ -84,7 +93,6 @@ const VideoList = () => {
           </div>
         ))}
       </div>
-          
     </div>
   );
 };

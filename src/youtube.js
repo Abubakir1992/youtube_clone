@@ -15,7 +15,7 @@ const VideoPlayer = ({ videoId, loadNextVideo }) => {
   }
 
   return (
-    <div className="sticky-container">
+    <div>
       {videoId !== null ? (
         <ReactPlayer
           ref={playerRef}
@@ -28,6 +28,7 @@ const VideoPlayer = ({ videoId, loadNextVideo }) => {
           controls
           onEnded={loadNextVideo}
           onReady={videoReady}
+          // width="auto"
         ></ReactPlayer>
         ) : (
         <WelocomePage />

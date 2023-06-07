@@ -2,20 +2,36 @@
   text-align: center;
 }
 
+.youtube_wrapper {
+  display: flex;
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+  }
+}
+
+.video_list {
+  margin: auto;
+  
+  @media screen and (max-width: 640px) {
+    margin-top: 125%;
+  }
+}
+
 .sticky-container {
-  position: sticky;
-  top: 0px;
-  z-index: 1;
-  /* background-color: #f5f5f5;
-  padding: 0;
-  width: 5px; */
+  background: white;
+  @media screen and (max-width: 640px) {
+    position: fixed;
+  }
 }
 
 .sticky-video {
-  /* margin-left: 19%; */
-  /* width: 100%;
-  padding: 0; */
   border: 2px solid #109265;
+  position: fixed;
+  /* width: 640px; */
+  @media screen and (max-width: 640px) {
+    position: initial;
+    width: auto !important;
+  }
 }
 .search-bar {
   position: sticky;

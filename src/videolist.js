@@ -61,35 +61,37 @@ const VideoList = () => {
     setSelectedVideoId(videoId);
     findIndex(etag);
   };
-
+console.log(currentVideoIndex)
   return (
-    <div>
+    <div className="youtube_wrapper">
+      <div className="sticky-container">
       <VideoPlayer videoId={selectedVideoId} loadNextVideo={loadNextVideo} />
       <SearchBar handleSearch={handleSearch} />
       {selectedVideoId !== null && (
-        <button className="nextbutton" onClick={loadNextVideo}>
+        <button className="nextbutton" onClick={loadNextVideo} disabled={currentVideoIndex === 49}>
           Next <FontAwesomeIcon icon={faAngleDoubleRight} />
         </button>
       )}
       {selectedVideoId !== null && (
-        <button className="prevbutton" onClick={loadPrevVideo}>
+        <button className="prevbutton" onClick={loadPrevVideo} disabled={!currentVideoIndex}>
           <FontAwesomeIcon icon={faAngleDoubleLeft} /> Previous
         </button>
       )}
-      <div>
+      </div>
+      <div className="video_list">
         {videos.map((video) => (
           <div
             className={`box box-${video.id.videoId}`}
             key={video.id.videoId}
             onClick={() => handleVideoSelect(video.id.videoId, video.etag)}
           >
-            <form>
-              <h2>{video.snippet.title}</h2>
-            </form>
             <img
               src={video.snippet.thumbnails.default.url}
               alt={video.snippet.title}
-            />
+              />
+              <form>
+                <h2>{video.snippet.title}</h2>
+              </form>
           </div>
         ))}
       </div>

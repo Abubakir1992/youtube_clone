@@ -18,7 +18,7 @@
 }
 
 .sticky-container {
-  background: white;
+  /* background: white; */
   @media screen and (max-width: 640px) {
     position: fixed;
   }
@@ -39,6 +39,10 @@
   padding: 0px;
   z-index: 1;
   width: 312px;
+  @media screen and (max-width: 640px) {
+    padding-left: 3rem;
+    margin: 1%
+  }
 }
 
 .search-bar input {
@@ -66,6 +70,15 @@
 
 .box {
   transition: background-color 0.5s ease;
+  width: 820px;
+  height: 150px; 
+}
+
+@media (max-width: 767px) {
+  .box {
+    width: 320px;
+    height: 200px; 
+  }
 }
 
 .box:hover {
@@ -86,7 +99,7 @@
 }
 
 .nextbutton {
-  padding: 12px 121px;
+  padding: 13px 121px;
   background-color: #109265;
   color: #fff;
   border: 1px solid rgb(6, 6, 6);
@@ -97,7 +110,11 @@
   position: sticky;
   top: 410px;
   z-index: 1;
-  margin-right: 79.5%;
+  margin-right: 47%;
+  @media screen and (max-width: 640px) {
+    margin-right: 0%;
+    margin: 1%
+  }
 }
 
 .nextbutton:hover {
@@ -116,7 +133,11 @@
   position: sticky;
   top: 460px;
   z-index: 1;
-  margin-right: 79.5%;
+  margin-right: 47%;
+  @media screen and (max-width: 640px) {
+    margin-right: 0%;
+    margin: 1%
+  }
 }
 
 .prevbutton:hover {

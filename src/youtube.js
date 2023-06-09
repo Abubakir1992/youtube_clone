@@ -28,7 +28,7 @@ const VideoPlayer = ({ videoId, loadNextVideo }) => {
           controls
           onEnded={loadNextVideo}
           onReady={videoReady}
-          // width="auto"
+          //width="auto"
         ></ReactPlayer>
         ) : (
         <WelocomePage />
